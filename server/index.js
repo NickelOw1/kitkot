@@ -5,10 +5,13 @@ const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 const router = require('./router/index')
 const errorMiddleware = require('./middlewares/error-middleware');
-
+const fileUpload = require("express-fileupload")
+const busboy = require('connect-busboy');
+const fs = require('fs');
 const PORT = process.env.PORT || 5000;
 const app = express()
 
+app.use(fileUpload());
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
