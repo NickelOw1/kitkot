@@ -5,7 +5,6 @@ export default class VideoService {
     static submitFile() {
       const formData = new FormData();
       const imagefile = document.querySelector('#file');
-      alert(imagefile.type)
       if (imagefile.type == "") {
         alert("ok")
       }

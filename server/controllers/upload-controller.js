@@ -1,30 +1,22 @@
 const path = require("path")
 const easyYandexS3 = require("easy-yandex-s3");
-
-const s3 = new easyYandexS3({
-    auth: {
-        accessKeyId: process.env.KEY_ID,
-        secretAccessKey: process.env.ACCESS_KEY,
-    },
-    Bucket: process.env.BUCKET_NAME,
-    debug: true
-});
+const videoService = require('../service/video-service');
+const userService = require('../service/user-service');
 
 class uploadController {
 
     async upload(req, res, next) {
       try {
-        const upload = await s3.Upload({
-          buffer: req.files.file.data
-      }, "/videos/" );
-      return res.json({message: `Success`})
+        const file = req.files.file.data
+        const {refreshToken} = req.cookies;
+        await videoService.upload(refreshToken, file)
+        return res.json({message: `Uploaded successfully`})
       } catch (e) {
-        console.log(e)
+        next(e)
       }
 
+}
 
-
-
-} }
+}
 
 module.exports = new uploadController()
