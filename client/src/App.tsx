@@ -11,16 +11,16 @@ const App: FC = () => {
     const {store} = useContext(Context);
     const [users, setUsers] = useState<IUser[]>([]);
 
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            store.checkAuth()
-        }
-    }, [])
+//    useEffect(() => {
+//        if (localStorage.getItem('token')) {
+//            store.checkAuth()
+//        }
+//    }, [])
 
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="profile" element={<Profile/>}/>
+          <Route path="profile/:id" element={<Profile/>}/>
           <Route path="/" element={<MainPage/>}/>
         </Routes>
       </BrowserRouter>

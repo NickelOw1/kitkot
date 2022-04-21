@@ -14,6 +14,7 @@ router.post('/login', userController.login);
 router.post('/logout', userController.logout);
 router.get('/activate/:link', userController.activate);
 router.get('/refresh', userController.refresh);
+router.get('/getvideos', uploadController.getVideos);
 router.post('/upload', authMiddleware, uploadController.upload)
 
 module.exports = router

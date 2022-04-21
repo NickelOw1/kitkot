@@ -17,6 +17,11 @@ class uploadController {
 
 }
 
+  async getVideos(req, res, next) {
+    const videos = await videoService.find(req.query.ID)
+    return res.status(200).json({message: videos})
+  }
+
 }
 
 module.exports = new uploadController()

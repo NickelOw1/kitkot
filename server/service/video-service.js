@@ -31,6 +31,12 @@ class VideoService {
     console.log(userData.videos)
     return video
   }
+
+  async find(id) {
+    const user = await UserModel.findById(id)
+    console.log(user.videos)
+    return user.videos
+  }
 }
-//.push(newVideoName)
+
 module.exports = new VideoService();
