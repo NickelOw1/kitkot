@@ -16,7 +16,7 @@ const s3 = new easyYandexS3({
 
 class VideoService {
   async upload(refreshToken, file) {
-    const videoName = uuid.v4()
+    const videoName = uuid.v4() + ".mp4"
     const upload = await s3.Upload({
       buffer: file,
       name: videoName

@@ -20,7 +20,6 @@ export default class VideoService {
             ID: id
           }
         })
-        console.log(videoData.data.message) //text
         return (videoData.data.message)
     }
 }
