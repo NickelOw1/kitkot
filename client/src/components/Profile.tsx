@@ -1,13 +1,15 @@
 import React, {FC, useEffect, useState} from 'react';
-//const useParams = ReactRouterDOM.useParams;
 import {useParams} from "react-router-dom"
-import VideoService from "../services/VideoService";
+import FileService from "../services/FileService";
+import SettingsButton from "./SettingsButton"
+import Avatar from "./Avatar"
+import VideoInput from './VideoInput';
 
 const Profile: FC = () => {
   const params = useParams()
   const [videos, setVideos] = useState([])
   const fetchData = async () => {
-    const videosData = await VideoService.getVideos(params.id)
+    const videosData = await FileService.getVideos(params.id)
     setVideos(videosData);
   };
   useEffect(() => {
@@ -19,6 +21,9 @@ const Profile: FC = () => {
 
   return (
       <div>
+        <SettingsButton/>
+        <Avatar/>
+        <VideoInput/>
         {videos.map((video) => {
           const link = "https://storage.yandexcloud.net/kitkottesting/videos/" + video
           return (

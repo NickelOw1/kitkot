@@ -6,6 +6,7 @@ import {IUser} from "./models/IUser";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import MainPage from "./components/MainPage"
 import Profile from "./components/Profile"
+import Settings from "./components/Settings"
 
 const App: FC = () => {
     const {store} = useContext(Context);
@@ -22,6 +23,7 @@ const App: FC = () => {
         <Routes>
           <Route path="profile/:id" element={<Profile/>}/>
           <Route path="/" element={<MainPage/>}/>
+          <Route path="/settings" element={<Settings/>}/>
         </Routes>
       </BrowserRouter>
     );

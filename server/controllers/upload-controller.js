@@ -7,7 +7,7 @@ const UserModel = require('../models/user-model');
 
 class uploadController {
 
-    async upload(req, res, next) {
+    async uploadVideo(req, res, next) {
       try {
         const file = req.files.file.data
         const {refreshToken} = req.cookies;
@@ -18,7 +18,17 @@ class uploadController {
       }
 
 }
+    async uploadAvatar(req, res, next) {
+      try {
+        const file = req.files.file.data
+        const {refreshToken} = req.cookies;
+        await videoService.uploadAvatar(refreshToken, file)
+        return res.json({message: `Changed successfully`})
+      } catch (e) {
+        next(e)
+      } 
 
+}
   async getVideos(req, res, next) {
 
     if (req.query.ID==0 || req.query.ID=="") {

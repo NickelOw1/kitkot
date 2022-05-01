@@ -32,9 +32,21 @@ class VideoService {
     return video
   }
 
+  async uploadAvatar(refreshToken, file) {
+    const avatarName = uuid.v4()
+    const upload = await s3.Upload({
+      buffer: file,
+      name: avatarName
+  }, "/avatars/" );
+    const tokenData = await TokenModel.findOne({refreshToken: refreshToken})
+    const userData = await UserModel.findById(tokenData.user)
+    userData.avatar = avatarName
+    await userData.save()
+    console.log(userData.videos)
+  }
+
   async find(id) {
     const user = await UserModel.findById(id)
-    console.log(user.videos)
     return user.videos
   }
 }

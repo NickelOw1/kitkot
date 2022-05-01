@@ -8,7 +8,7 @@ const MainPage: FC = () => {
         <Header/>
         <h1>Main page</h1>
         <VideoInput/>
-        <a href="profile">Profile</a>
+        <a href="profile/0">Profile</a>
       </div>
   )
 }

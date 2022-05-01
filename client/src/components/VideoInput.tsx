@@ -1,11 +1,11 @@
 import React, {FC, useContext} from 'react';
-import VideoService from "../services/VideoService";
+import FileService from "../services/FileService";
 
 const VideoInput: FC = () => {
   return (
       <div>
         <input name="videoupload" type="file" id="file"/>
-        <button type="submit" onClick={VideoService.submitFile}>Подтвердить</button>
+        <button type="submit" onClick={FileService.submitVideo}>Подтвердить</button>
       </div>
   )
 }
