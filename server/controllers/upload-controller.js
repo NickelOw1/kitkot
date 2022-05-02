@@ -45,7 +45,22 @@ class uploadController {
     const videos = await videoService.find(req.query.ID)
     return res.status(200).json({message: videos})
   }
+  async getAvatar(req, res, next) {
 
+    if (req.query.ID==0 || req.query.ID=="") {
+      const {refreshToken} = req.cookies
+      if (!refreshToken) {
+        return res.status(404).json({message: ["User is not found"]})
+      }
+      const tokenData = await TokenModel.findOne({refreshToken: refreshToken})
+      const userData = await UserModel.findById(tokenData.user)
+      const avatar = await videoService.findAvatar(userData.id)
+      return res.status(200).json({message: avatar})
+
+    }
+    const avatar = await videoService.findAvatar(req.query.ID)
+    return res.status(200).json({message: avatar})
+  }
 }
 
 module.exports = new uploadController()

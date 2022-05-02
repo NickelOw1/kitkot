@@ -5,12 +5,16 @@ import SettingsButton from "./SettingsButton"
 import Avatar from "./Avatar"
 import VideoInput from './VideoInput';
 
-const Profile: FC = () => {
+const Profile = () => {
   const params = useParams()
   const [videos, setVideos] = useState([])
+  const [avatar, setAvatar] = useState("")
   const fetchData = async () => {
     const videosData = await FileService.getVideos(params.id)
-    setVideos(videosData);
+    const avatarData = await FileService.getAvatar(params.id)
+    console.log(avatarData)
+    setVideos(videosData)
+    setAvatar(avatarData)
   };
   useEffect(() => {
     if (!videos[0]) {
@@ -22,7 +26,7 @@ const Profile: FC = () => {
   return (
       <div>
         <SettingsButton/>
-        <Avatar/>
+        <Avatar avatar={avatar}/>
         <VideoInput/>
         {videos.map((video) => {
           const link = "https://storage.yandexcloud.net/kitkottesting/videos/" + video

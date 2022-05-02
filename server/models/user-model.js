@@ -6,7 +6,9 @@ const UserSchema = new Schema({
     isActivated: {type: Boolean, default: false},
     activationLink: {type: String},
     videos: {type: Array},
-    avatar: {type: String}
+    avatar: {type: String},
+    subscriptions: {type: Array},
+    nickname: {type: String, required: true}
 })
 
 module.exports = model('User', UserSchema);

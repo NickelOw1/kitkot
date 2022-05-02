@@ -15,7 +15,9 @@ router.post('/logout', userController.logout);
 router.get('/activate/:link', userController.activate);
 router.get('/refresh', userController.refresh);
 router.get('/getvideos', uploadController.getVideos);
+router.get('/getavatar', uploadController.getAvatar);
 router.post('/uploadvideo', authMiddleware, uploadController.uploadVideo)
 router.post('/uploadavatar', authMiddleware, uploadController.uploadAvatar)
+router.post('/updatenickname', userController.changeNick)
 
 module.exports = router

@@ -60,6 +60,17 @@ class UserController {
             next(e);
         }
     }
+
+    async changeNick(req, res, next) {
+        try {
+            const {nickname} = req.body
+            const {refreshToken} = req.cookies;
+            await userService.changenick(refreshToken, nickname)
+            return res.json({message:"updated"});
+        } catch (e) {
+            next(e);
+        }
+    }
 }
 
 
