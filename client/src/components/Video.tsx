@@ -2,6 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom"
 import FileService from "../services/FileService";
 import Avatar from "./Avatar"
+import LikeButton from './LikeButton';
 
 const Video: FC = () => {
   const params = useParams()
@@ -22,6 +23,7 @@ const Video: FC = () => {
   return (
       <div>
             <Avatar avatar={avatar}/>
+            <LikeButton videoId={params.id||""} />
             <video controls preload="auto" src={"https://storage.yandexcloud.net/kitkottesting/videos/"+video}/>
 
       </div>

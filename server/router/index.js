@@ -4,7 +4,7 @@ const router = new Router();
 const {body} = require('express-validator');
 const uploadController = require('../controllers/upload-controller')
 const authMiddleware = require('../middlewares/auth-middleware');
-
+const likesController = require('../controllers/like-controller')
 router.post('/registration',
     body('email').isEmail(),
     body('password').isLength({min: 3, max: 32}),
@@ -20,5 +20,6 @@ router.post('/uploadvideo', authMiddleware, uploadController.uploadVideo)
 router.post('/uploadavatar', authMiddleware, uploadController.uploadAvatar)
 router.post('/updatenickname', userController.changeNick)
 router.get('/getsinglevideo', uploadController.getSingleVideo)
+router.post('/updatelikes', likesController.update)
 
 module.exports = router
