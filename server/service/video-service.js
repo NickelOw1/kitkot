@@ -53,6 +53,11 @@ class VideoService {
     const user = await UserModel.findById(id)
     return user.avatar
   }
+  async findSingle(id) {
+    const video = await VideoModel.findById(id)
+    const user = await UserModel.findById(video.user)
+    return ({video: video.name, avatar: user.avatar})
+  }
 }
 
 module.exports = new VideoService();

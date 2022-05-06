@@ -61,6 +61,14 @@ class uploadController {
     const avatar = await videoService.findAvatar(req.query.ID)
     return res.status(200).json({message: avatar})
   }
+
+  async getSingleVideo(req, res, next) {
+    if (req.query.ID==0) {
+      return res.status(404)
+    }
+    const videoData = await videoService.findSingle(req.query.ID)
+    return res.status(200).json(videoData)
+  }
 }
 
 module.exports = new uploadController()

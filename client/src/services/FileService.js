@@ -40,4 +40,13 @@ export default class FileService {
       })
       return (avatarData.data.message)
   }
+
+    static async getSingleVideo(id) {
+      const videoData = await axios.get(`${API_URL}/getsinglevideo`, {
+        params: {
+          ID: id
+        }
+      })
+      return videoData.data
+    }
 }
