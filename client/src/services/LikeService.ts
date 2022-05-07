@@ -5,5 +5,13 @@ export default class UserService {
         return $api.post('/updatelikes', {value, videoId})
     }
 
+    static async getLikes(videoId: string) {
+        return $api.get('/getlikes', {
+            params: {
+                videoId
+            }
+        })
+    }
+
 }
 

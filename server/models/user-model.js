@@ -8,7 +8,8 @@ const UserSchema = new Schema({
     videos: {type: Array},
     avatar: {type: String},
     subscriptions: {type: Array},
-    nickname: {type: String, required: true}
+    nickname: {type: String, required: true},
+    likedVideos: {type: Array, default: []}
 })
 
 module.exports = model('User', UserSchema);

@@ -21,5 +21,6 @@ router.post('/uploadavatar', authMiddleware, uploadController.uploadAvatar)
 router.post('/updatenickname', userController.changeNick)
 router.get('/getsinglevideo', uploadController.getSingleVideo)
 router.post('/updatelikes', likesController.update)
+router.get('/getlikes', likesController.getLikes)
 
 module.exports = router
