@@ -14,13 +14,15 @@ const LikeButton = (props: {videoId: string}) => {
     const updateLike = async () => {
       if (likeBool==0) {
           setLikeBool(1)
-          await likeService.update(1, props.videoId)
           setLikes(likes + 1)
+          await likeService.update(1, props.videoId)
+
       }
       if (likeBool==1) {
           setLikeBool(0)
-          await likeService.update(-1, props.videoId)
           setLikes(likes - 1)
+          await likeService.update(-1, props.videoId)
+
       }
   }
   const getLikes = async () => {
@@ -29,19 +31,10 @@ const LikeButton = (props: {videoId: string}) => {
     const likesBool = (await likeService.getLikes(props.videoId)).data.likeBool
     setLikeBool(likesBool)
   }
-  if (likeBool==0) {
       return (
         <div>
             <h1>{likes}</h1>
-            <button onClick={updateLike}>Like</button>
-        </div>
-      )
-  }
-
-      return (
-        <div>
-            <h1>{likes}</h1>
-            <button onClick={updateLike}>Dislike</button>
+            <button onClick={updateLike}>{likeBool}</button>
         </div>
       )
   

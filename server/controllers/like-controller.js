@@ -3,10 +3,11 @@ const likeService = require('../service/like-service');
 class LikesController {
     async update(req, res, next) {
         try {
+            const {refreshToken} = req.cookies
             if (req.body.value != 1 && req.body.value != -1) {
                 throw new Error()
             }
-            await likeService.updateLikes(req.body.value, req.body.videoId)
+            await likeService.updateLikes(req.body.value, req.body.videoId, refreshToken)
 
             return res.status(200)
         } catch (e) {

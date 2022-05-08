@@ -1,12 +1,14 @@
 const userModel = require("../models/user-model")
 const VideoModel = require("../models/video-model")
+const TokenModel = require('../models/token-model')
+
 
 class LikeService {
 
-    async updateLikes(value, videoId) {
+    async updateLikes(value, videoId, refreshToken) {
         const videoData = await VideoModel.findById(videoId)
-
-        const userData = await userModel.findById(videoData.user)
+        const tokenData = await TokenModel.findOne({refreshToken})
+        const userData = await userModel.findById(tokenData.user)
         if (value===1 && userData.likedVideos.includes(videoId)) {
             throw new Error()
         }
